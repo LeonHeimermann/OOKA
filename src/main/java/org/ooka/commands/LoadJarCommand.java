@@ -13,7 +13,7 @@ public class LoadJarCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public boolean execute() {
         try (JarFile jarFile = new JarFile(pathToJar)) {
             var jarEntries = jarFile.entries();
             URL[] urls = {new URL("jar:file:" + pathToJar + "!/")};
@@ -31,12 +31,15 @@ public class LoadJarCommand implements Command {
                     System.out.println("Loaded class " + className);
                 }
             }
+            return true;
         } catch (java.io.IOException ioException) {
             System.out.println("Loading JAR File " + pathToJar + " failed!");
             System.out.println("Exception: " + ioException.getMessage());
+            return false;
         } catch (ClassNotFoundException notFoundException) {
             System.out.println("Loading Class failed");
             System.out.println("Exception: " + notFoundException.getMessage());
+            return false;
         }
     }
 }
