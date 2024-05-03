@@ -37,8 +37,13 @@ public class Component implements ComponentInstanceHandler {
     }
 
     @Override
-    public void startComponent() {
-        componentInstanceHandler.startComponent();
+    public void startInstance() {
+        componentInstanceHandler.startInstance();
+    }
+
+    @Override
+    public void startInstances(int amount) {
+        componentInstanceHandler.startInstances(amount);
     }
 
     @Override
