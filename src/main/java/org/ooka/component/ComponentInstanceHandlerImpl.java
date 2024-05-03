@@ -22,12 +22,19 @@ public class ComponentInstanceHandlerImpl implements ComponentInstanceHandler {
 
 
     @Override
-    public void startComponent() {
+    public void startInstance() {
         ComponentRunnable componentRunnable = new ComponentRunnable(instances.size(), component);
         Thread thread = new Thread(componentRunnable);
         instances.add(thread);
         thread.start();
         component.setState(State.RUNNING);
+    }
+
+    @Override
+    public void startInstances(int amount) {
+        for (int i = 0; i < amount; i++) {
+            startInstance();
+        }
     }
 
     @Override

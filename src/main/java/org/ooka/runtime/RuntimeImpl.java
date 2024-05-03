@@ -42,7 +42,22 @@ public class RuntimeImpl implements Runtime {
     public boolean startComponentInstance(int componentId) {
         try {
             Component component = getComponentById(componentId);
-            component.startComponent();
+            component.startInstance();
+            return true;
+        } catch (NoSuchElementException e) {
+            handleNoSuchElementException(componentId);
+            return false;
+        } catch (RuntimeException e) {
+            handleRuntimeException(e);
+            return false;
+        }
+    }
+
+    @Override
+    public boolean startComponentInstances(int componentId, int amount) {
+        try {
+            Component component = getComponentById(componentId);
+            component.startInstances(amount);
             return true;
         } catch (NoSuchElementException e) {
             handleNoSuchElementException(componentId);
