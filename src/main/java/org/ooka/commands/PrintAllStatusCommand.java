@@ -7,11 +7,9 @@ import java.util.List;
 public class PrintAllStatusCommand implements Command {
 
     private final Runtime runtime;
-    private final int componentId;
 
-    public PrintAllStatusCommand(Runtime runtime, int componentId) {
+    public PrintAllStatusCommand(Runtime runtime) {
         this.runtime = runtime;
-        this.componentId = componentId;
     }
 
     @Override
