@@ -2,15 +2,12 @@ package org.ooka.component;
 
 import org.ooka.types.State;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Component {
+public class Component implements ComponentInstanceHandler {
 
     private int id;
     private String componentName;
     private State state;
-    private List<Thread> instances;
+    private ComponentInstanceHandler componentInstanceHandler;
 
     public Component(int id, String componentName) {
         this(id, componentName, State.INITIAL);
@@ -20,7 +17,7 @@ public class Component {
         this.id = id;
         this.componentName = componentName;
         this.state = state;
-        instances = new ArrayList<>();
+        componentInstanceHandler = new ComponentInstanceHandlerImpl(this);
     }
 
     public int getId() {
@@ -39,22 +36,28 @@ public class Component {
         this.state = state;
     }
 
-    public void addInstance(Thread instance) {
-        instances.add(instance);
+    @Override
+    public void startComponent() {
+        componentInstanceHandler.startComponent();
     }
 
-    public List<Thread> getAllInstances() {
-        return instances;
+    @Override
+    public void stopInstanceById(int threadId) {
+        componentInstanceHandler.stopInstanceById(threadId);
     }
 
-    public int getNextInstanceId() {
-        return instances.size();
+    @Override
+    public void stopAllInstances() {
+        componentInstanceHandler.stopAllInstances();
     }
 
+    @Override
     public void checkIsRunning() {
-        if (instances.isEmpty()) {
-            state = State.STOPPED;
-        }
+        componentInstanceHandler.checkIsRunning();
+    }
+
+    public String toString() {
+        return String.format("id: %s, name: %s, state: %s", id, componentName, state);
     }
 
 }

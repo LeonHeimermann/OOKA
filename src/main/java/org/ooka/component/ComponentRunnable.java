@@ -6,13 +6,13 @@ public class ComponentRunnable implements Runnable{
 
     private Component component;
 
-    public  ComponentRunnable(Component component) {
-        this(component.getNextInstanceId(), component);
-    }
-
     public ComponentRunnable(int id, Component component) {
         this.id = id;
         this.component = component;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override
@@ -23,13 +23,5 @@ public class ComponentRunnable implements Runnable{
             }
         }
         component.checkIsRunning();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public Component getComponent() {
-        return component;
     }
 }
