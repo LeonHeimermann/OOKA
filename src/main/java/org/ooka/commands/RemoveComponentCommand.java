@@ -4,8 +4,8 @@ import org.ooka.runtime.Runtime;
 
 public class RemoveComponentCommand implements Command {
 
-    Runtime runtime;
-    int componentId;
+    private final Runtime runtime;
+    private final int componentId;
 
     public RemoveComponentCommand(Runtime runtime, int componentId) {
         this.runtime = runtime;

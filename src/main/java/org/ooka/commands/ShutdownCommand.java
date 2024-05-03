@@ -4,7 +4,7 @@ import org.ooka.runtime.Runtime;
 
 public class ShutdownCommand implements Command {
 
-    Runtime runtime;
+    private final Runtime runtime;
 
     public ShutdownCommand(Runtime runtime) {
         this.runtime = runtime;

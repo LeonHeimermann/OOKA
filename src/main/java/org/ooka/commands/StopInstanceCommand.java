@@ -4,9 +4,9 @@ import org.ooka.runtime.Runtime;
 
 public class StopInstanceCommand implements Command {
 
-    Runtime runtime;
-    int componentId;
-    int threadId;
+    private final Runtime runtime;
+    private final int componentId;
+    private final int threadId;
 
     public StopInstanceCommand(Runtime runtime, int componentId, int threadId) {
         this.runtime = runtime;

@@ -3,9 +3,9 @@ package org.ooka.commands;
 import org.ooka.runtime.Runtime;
 
 public class StartInstancesCommand implements Command {
-    Runtime runtime;
-    int componentId;
-    int amount;
+    private final Runtime runtime;
+    private final int componentId;
+    private final int amount;
 
     public StartInstancesCommand(Runtime runtime, int componentId, int amount) {
         this.runtime = runtime;

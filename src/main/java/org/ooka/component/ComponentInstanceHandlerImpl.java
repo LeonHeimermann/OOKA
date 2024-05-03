@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComponentInstanceHandlerImpl implements ComponentInstanceHandler {
-    private Component component;
-    private List<Thread> instances;
+    private final Component component;
+    private final List<Thread> instances;
 
     public ComponentInstanceHandlerImpl(Component component) {
         this.component = component;

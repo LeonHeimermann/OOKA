@@ -7,13 +7,17 @@ import java.util.*;
 
 public class RuntimeImpl implements Runtime {
     private static Runtime runtime = null;
-    private List<Component> loadedComponents = new ArrayList<>();
+    private final List<Component> loadedComponents;
 
     public static Runtime getInstance() {
         if (runtime == null) {
             runtime = new RuntimeImpl();
         }
         return runtime;
+    }
+
+    public RuntimeImpl() {
+        loadedComponents = new ArrayList<>();
     }
 
     @Override

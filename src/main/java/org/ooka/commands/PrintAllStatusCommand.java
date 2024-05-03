@@ -6,8 +6,8 @@ import java.util.List;
 
 public class PrintAllStatusCommand implements Command {
 
-    Runtime runtime;
-    int componentId;
+    private final Runtime runtime;
+    private final int componentId;
 
     public PrintAllStatusCommand(Runtime runtime, int componentId) {
         this.runtime = runtime;

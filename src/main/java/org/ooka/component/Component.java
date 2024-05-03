@@ -4,10 +4,10 @@ import org.ooka.types.State;
 
 public class Component implements ComponentInstanceHandler {
 
-    private int id;
-    private String componentName;
+    private final int id;
+    private final String componentName;
     private State state;
-    private ComponentInstanceHandler componentInstanceHandler;
+    private final ComponentInstanceHandler componentInstanceHandler;
 
     public Component(int id, String componentName) {
         this(id, componentName, State.INITIAL);
