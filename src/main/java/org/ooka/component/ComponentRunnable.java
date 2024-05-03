@@ -1,9 +1,8 @@
 package org.ooka.component;
 
-public class ComponentRunnable implements Runnable{
+public class ComponentRunnable implements Runnable {
 
     private int id;
-
     private Component component;
 
     public ComponentRunnable(int id, Component component) {
