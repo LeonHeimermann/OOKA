@@ -10,7 +10,7 @@ public class RuntimeImpl implements Runtime {
     private List<Component> loadedComponents = new ArrayList<>();
 
     public static Runtime getInstance() {
-        if(runtime == null){
+        if (runtime == null) {
             runtime = new RuntimeImpl();
         }
         return runtime;
@@ -23,16 +23,32 @@ public class RuntimeImpl implements Runtime {
     }
 
     @Override
+    public boolean removeComponent(int componentId) {
+        try {
+            Component component = getComponentById(componentId);
+            stopAllComponentInstances(componentId);
+            loadedComponents.remove(component);
+            return true;
+        } catch (NoSuchElementException e) {
+            handleNoSuchElementException(componentId);
+            return false;
+        } catch (RuntimeException e) {
+            handleRuntimeException(e);
+            return false;
+        }
+    }
+
+    @Override
     public boolean startComponentInstance(int componentId) {
         try {
             Component component = getComponentById(componentId);
             component.startComponent();
             return true;
         } catch (NoSuchElementException e) {
-            System.out.printf("No component found with id: %s%n", componentId);
+            handleNoSuchElementException(componentId);
             return false;
         } catch (RuntimeException e) {
-            System.out.printf("An error occurred while starting component %s%n", e.getMessage());
+            handleRuntimeException(e);
             return false;
         }
     }
@@ -44,10 +60,10 @@ public class RuntimeImpl implements Runtime {
             component.stopInstanceById(threadId);
             return true;
         } catch (NoSuchElementException e) {
-            System.out.printf("No component found with id: %s", componentId);
+            handleNoSuchElementException(componentId);
             return false;
         } catch (RuntimeException e) {
-            System.out.printf("An error occurred while stopping component %s%n", e.getMessage());
+            handleRuntimeException(e);
             return false;
         }
     }
@@ -56,15 +72,19 @@ public class RuntimeImpl implements Runtime {
     public boolean stopAllComponentInstances(int componentId) {
         try {
             Component component = getComponentById(componentId);
-            component.stopAllInstances();
+            stopAllComponentInstances(component);
             return true;
         } catch (NoSuchElementException e) {
-            System.out.printf("No component found with id: %s", componentId);
+            handleNoSuchElementException(componentId);
             return false;
         } catch (RuntimeException e) {
-            System.out.printf("An error occurred while stopping component %s%n", e.getMessage());
+            handleRuntimeException(e);
             return false;
         }
+    }
+
+    private void stopAllComponentInstances(Component component) {
+            component.stopAllInstances();
     }
 
     @Override
@@ -73,10 +93,10 @@ public class RuntimeImpl implements Runtime {
             Component component = getComponentById(componentId);
             return component.toString();
         } catch (NoSuchElementException e) {
-            System.out.printf("No component found with id: %s", componentId);
+            handleNoSuchElementException(componentId);
             return null;
         } catch (RuntimeException e) {
-            System.out.printf("An error occurred while stopping component %s%n", e.getMessage());
+            handleRuntimeException(e);
             return null;
         }
     }
@@ -101,4 +121,11 @@ public class RuntimeImpl implements Runtime {
                 .orElseThrow();
     }
 
+    private void handleNoSuchElementException(int componentId) {
+        System.out.printf("No component found with id: %s", componentId);
+    }
+
+    private void handleRuntimeException(RuntimeException e) {
+        System.out.printf("An error occurred while stopping component %s%n", e.getMessage());
+    }
 }
