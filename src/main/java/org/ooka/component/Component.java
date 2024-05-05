@@ -18,7 +18,7 @@ public class Component implements ComponentInstanceHandler {
         this(componentName, State.INITIAL, startMethod, stopMethod, startingClass);
     }
 
-    public Component(String componentName, State state, Method startMethod, Method stopMethod, Class startingClass) {
+    public Component(String componentName, State state, Method startMethod, Method stopMethod, Class<?> startingClass) {
         this.componentName = componentName;
         this.state = state;
         componentInstanceHandler = new ComponentInstanceHandlerImpl(this);

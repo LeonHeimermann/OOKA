@@ -12,7 +12,6 @@ public class LoadJarCommand implements Command {
 
     private final Runtime runtime;
     private final String pathToJar;
-    private final String FILE_NAME_REGEX = "[\\\\/].*\\\\|\\\\|/(.*?)(?=\\.jar$)";
 
     public LoadJarCommand(Runtime runtime, String pathToJar) {
         this.runtime = runtime;
