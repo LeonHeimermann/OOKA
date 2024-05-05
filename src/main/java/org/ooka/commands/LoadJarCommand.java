@@ -48,12 +48,13 @@ public class LoadJarCommand implements Command {
                 if (startingClass == null) {
                     throw new RuntimeException("Keine StarterClass gefunden");
                 } else {
+                    /*
                     var runtime = Runtime.getInstance();
                     runtime.addComponent(new Component(123, "TestKomponente",
                             startingClass.c,
                             startingClass.startMethod,
                             startingClass.stopMethod)
-                    );
+                    );*/
                 }
             }
             return true;

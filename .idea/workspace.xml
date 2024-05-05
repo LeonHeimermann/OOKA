@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="727c06d5-2549-4a97-bf82-85c0a2ae3aa2" name="Changes" comment="zweiter commit" />
+    <list default="true" id="727c06d5-2549-4a97-bf82-85c0a2ae3aa2" name="Changes" comment="zweiter commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/cli/CliImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/cli/CliImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/commands/ListComponentsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/commands/ListComponentsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/commands/LoadJarCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/commands/LoadJarCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/runtime/Runtime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/runtime/Runtime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/runtime/RuntimeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/runtime/RuntimeImpl.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,7 +61,7 @@
     "Maven.Aufgabe2 [compile].executor": "Run",
     "Maven.Aufgabe2 [package].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "clemes",
+    "git-widget-placeholder": "development",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/clemens/Programmierung/Uni/OOKA/Aufgabe2",
     "node.js.detected.package.eslint": "true",
@@ -74,7 +81,7 @@
       <recent name="$PROJECT_DIR$/target" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.java in Aufgabe2">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.ooka.Main" />
       <module name="Aufgabe2" />
@@ -88,8 +95,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="java in Aufgabe2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Aufgabe2" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.java in Aufgabe2" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />

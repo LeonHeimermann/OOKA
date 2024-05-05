@@ -3,8 +3,6 @@ package org.ooka.cli;
 import org.ooka.commands.Command;
 import org.ooka.commands.ListComponentsCommand;
 import org.ooka.commands.LoadJarCommand;
-import org.ooka.commands.StartComponent;
-import org.ooka.runtime.Runtime;
 
 import java.util.Scanner;
 

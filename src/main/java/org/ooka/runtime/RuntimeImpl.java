@@ -128,6 +128,11 @@ public class RuntimeImpl implements Runtime {
     }
 
     @Override
+    public List<Component> getDeployedComponents() {
+        return loadedComponents;
+    }
+
+    @Override
     public void shutdown() {
         loadedComponents.forEach(entry -> stopAllComponentInstances(entry.getId()));
         loadedComponents.clear();

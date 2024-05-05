@@ -13,5 +13,6 @@ public interface Runtime {
     boolean stopAllComponentInstances(int componentId);
     String getStatus(int componentId);
     List<String> getAllStatus();
+    List<Component> getDeployedComponents();
     void shutdown();
 }
