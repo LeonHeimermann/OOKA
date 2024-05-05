@@ -2,16 +2,17 @@ package org.ooka.component;
 
 import org.ooka.types.State;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ComponentInstanceHandlerImpl implements ComponentInstanceHandler {
     private final Component component;
     private final List<Thread> instances;
+    private final String THREAD_NAME_PREFIX = "Thread";
 
     public ComponentInstanceHandlerImpl(Component component) {
         this.component = component;
-        instances = new ArrayList<>();
+        instances = new CopyOnWriteArrayList<>();
     }
 
     public void checkIsRunning() {
@@ -24,7 +25,7 @@ public class ComponentInstanceHandlerImpl implements ComponentInstanceHandler {
     @Override
     public void startInstance() {
         ComponentRunnable componentRunnable = new ComponentRunnable(instances.size(), component);
-        Thread thread = new Thread(componentRunnable);
+        Thread thread = new Thread(componentRunnable, THREAD_NAME_PREFIX + instances.size());
         instances.add(thread);
         thread.start();
         component.setState(State.RUNNING);
@@ -38,12 +39,17 @@ public class ComponentInstanceHandlerImpl implements ComponentInstanceHandler {
     }
 
     @Override
-    public void stopInstanceById(int threadId) {
+    public void removeInstanceById(int threadId, boolean flagInterrupt) {
         Thread thread = instances.stream()
-                .filter(entry -> entry.getId() == threadId)
+                .filter(entry -> entry.getName().equals(THREAD_NAME_PREFIX + threadId))
                 .findFirst()
-                .orElseThrow();
-        thread.interrupt();
+                .orElse(null);
+        if (thread == null) {
+            return;
+        }
+        if (flagInterrupt) {
+            thread.interrupt();
+        }
         instances.remove(thread);
         checkIsRunning();
     }

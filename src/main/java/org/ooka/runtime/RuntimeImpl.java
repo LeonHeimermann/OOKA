@@ -22,6 +22,7 @@ public class RuntimeImpl implements Runtime {
 
     @Override
     public void addComponent(Component component) {
+        component.setId(loadedComponents.size());
         loadedComponents.add(component);
         component.setState(State.LOADED);
     }
@@ -76,7 +77,7 @@ public class RuntimeImpl implements Runtime {
     public boolean stopComponentInstance(int componentId, int threadId) {
         try {
             Component component = getComponentById(componentId);
-            component.stopInstanceById(threadId);
+            component.removeInstanceById(threadId, true);
             return true;
         } catch (NoSuchElementException e) {
             handleNoSuchElementException(componentId);

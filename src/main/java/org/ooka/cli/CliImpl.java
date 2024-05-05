@@ -1,14 +1,14 @@
 package org.ooka.cli;
 
-import org.ooka.commands.Command;
-import org.ooka.commands.ListComponentsCommand;
-import org.ooka.commands.LoadJarCommand;
+import org.ooka.commands.*;
+import org.ooka.runtime.RuntimeImpl;
 
 import java.util.Scanner;
 
 public class CliImpl implements Cli {
     @Override
     public void start() {
+        var runtime = RuntimeImpl.getInstance();
         System.out.println("--- Beste LZU der Welt ---");
         printHelp();
         Scanner scanner = new Scanner(System.in);
@@ -26,7 +26,7 @@ public class CliImpl implements Cli {
                 if (parameter.length != 2) {
                     System.out.println("deploy erwartet genau eine pfadangabe");
                 } else {
-                    if ( executeCommand(new LoadJarCommand(parameter[1])) ){
+                    if ( executeCommand(new LoadJarCommand(runtime, parameter[1])) ){
                         System.out.println("successfully deployed component");
                     }
                 }
@@ -35,10 +35,27 @@ public class CliImpl implements Cli {
                 if (parameter.length != 2) {
                     System.out.println("start erwartet genau eine komponenten-id");
                 } else {
-                    System.out.println("start is not yet implemented");
+                    try {
+                        int componentId = Integer.parseInt(parameter[1]);
+                        Command startInstanceCommand = new StartInstanceCommand(runtime, componentId);
+                        startInstanceCommand.execute();
+                        System.out.println("Successfully started component");
+                    } catch (NumberFormatException e) {
+                        System.out.println("Id could not be parsed");
+                    }
                 }
             } else if (input.equals("list")) {
                 executeCommand(new ListComponentsCommand());
+            } else if (input.startsWith("status")) {
+                var parameter = input.split("\\s+");
+                if (parameter.length == 1) {
+                    Command printAllStatusCommand = new PrintAllStatusCommand(runtime);
+                    printAllStatusCommand.execute();
+                } else {
+                    int componentId = Integer.parseInt(parameter[1]);
+                    Command printStatusCommand = new PrintStatusCommand(runtime, componentId);
+                    printStatusCommand.execute();
+                }
             } else {
                 System.out.println("'" + input + "' ist kein gültiges kommando. für eine Kommandoübersicht 'help' eingeben.");
             }

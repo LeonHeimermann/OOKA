@@ -1,5 +1,7 @@
 package org.ooka.component;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class ComponentRunnable implements Runnable {
 
     private final int id;
@@ -16,11 +18,19 @@ public class ComponentRunnable implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
-            if (Thread.interrupted()) {
-                break;
+        try {
+            var instance = component.getStartingClass().getDeclaredConstructor().newInstance();
+            try {
+                component.getStartMethod().invoke(instance);
+            } catch (InvocationTargetException e) {
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            } finally {
+                component.getStopMethod().invoke(instance);
             }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-        component.checkIsRunning();
+        component.removeInstanceById(id, false);
     }
 }

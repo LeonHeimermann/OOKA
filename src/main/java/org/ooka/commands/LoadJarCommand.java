@@ -10,9 +10,12 @@ import java.util.jar.JarFile;
 
 public class LoadJarCommand implements Command {
 
+    private final Runtime runtime;
     private final String pathToJar;
+    private final String FILE_NAME_REGEX = "[\\\\/].*\\\\|\\\\|/(.*?)(?=\\.jar$)";
 
-    public LoadJarCommand(String pathToJar) {
+    public LoadJarCommand(Runtime runtime, String pathToJar) {
+        this.runtime = runtime;
         this.pathToJar = pathToJar;
     }
 
@@ -48,13 +51,14 @@ public class LoadJarCommand implements Command {
                 if (startingClass == null) {
                     throw new RuntimeException("Keine StarterClass gefunden");
                 } else {
-                    /*
-                    var runtime = Runtime.getInstance();
-                    runtime.addComponent(new Component(123, "TestKomponente",
-                            startingClass.c,
-                            startingClass.startMethod,
-                            startingClass.stopMethod)
-                    );*/
+                    String componentName = generateComponentName();
+                    System.out.println(componentName);
+                    Component newComponent = new Component(
+                            componentName,
+                            startingClass.getStartMethod(),
+                            startingClass.getStopMethod(),
+                            startingClass.getStartingClass());
+                    runtime.addComponent(newComponent);
                 }
             }
             return true;
@@ -69,15 +73,21 @@ public class LoadJarCommand implements Command {
         }
     }
 
+    private String generateComponentName() {
+        int indexSlash = pathToJar.lastIndexOf("\\");
+        int indexJar = pathToJar.indexOf(".jar");
+        return pathToJar.substring(indexSlash + 1, indexJar);
+    }
+
     private class AnalyzedClass {
-        private final Class<?> c;
+        private final Class<?> startingClass;
         private Method startMethod;
         private Method stopMethod;
         private boolean isStartingClass;
 
-        public AnalyzedClass(Class<?> c) {
-            this.c = c;
-            analyzeClass(c);
+        public AnalyzedClass(Class<?> startingClass) {
+            this.startingClass = startingClass;
+            analyzeClass(startingClass);
         }
 
         public Method getStartMethod() {
@@ -86,6 +96,10 @@ public class LoadJarCommand implements Command {
 
         public Method getStopMethod() {
             return stopMethod;
+        }
+
+        public Class<?> getStartingClass() {
+            return startingClass;
         }
 
         public boolean isStartingClass() {

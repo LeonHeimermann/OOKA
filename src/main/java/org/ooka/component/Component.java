@@ -2,26 +2,37 @@ package org.ooka.component;
 
 import org.ooka.types.State;
 
+import java.lang.reflect.Method;
+
 public class Component implements ComponentInstanceHandler {
 
-    private final int id;
+    private int id;
     private final String componentName;
     private State state;
+    private final Method startMethod;
+    private final Method stopMethod;
+    private final Class<?> startingClass;
     private final ComponentInstanceHandler componentInstanceHandler;
 
-    public Component(int id, String componentName) {
-        this(id, componentName, State.INITIAL);
+    public Component(String componentName, Method startMethod, Method stopMethod, Class<?> startingClass) {
+        this(componentName, State.INITIAL, startMethod, stopMethod, startingClass);
     }
 
-    public Component(int id, String componentName, State state) {
-        this.id = id;
+    public Component(String componentName, State state, Method startMethod, Method stopMethod, Class startingClass) {
         this.componentName = componentName;
         this.state = state;
         componentInstanceHandler = new ComponentInstanceHandlerImpl(this);
+        this.startMethod = startMethod;
+        this.stopMethod = stopMethod;
+        this.startingClass = startingClass;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getComponentName() {
@@ -36,6 +47,18 @@ public class Component implements ComponentInstanceHandler {
         this.state = state;
     }
 
+    public Method getStartMethod() {
+        return startMethod;
+    }
+
+    public Method getStopMethod() {
+        return stopMethod;
+    }
+
+    public Class<?> getStartingClass() {
+        return startingClass;
+    }
+
     @Override
     public void startInstance() {
         componentInstanceHandler.startInstance();
@@ -47,8 +70,8 @@ public class Component implements ComponentInstanceHandler {
     }
 
     @Override
-    public void stopInstanceById(int threadId) {
-        componentInstanceHandler.stopInstanceById(threadId);
+    public void removeInstanceById(int threadId, boolean flagInterrupt) {
+        componentInstanceHandler.removeInstanceById(threadId, flagInterrupt);
     }
 
     @Override
