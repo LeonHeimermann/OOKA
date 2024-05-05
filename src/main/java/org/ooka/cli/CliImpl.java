@@ -37,7 +37,7 @@ public class CliImpl implements Cli {
                 if (parameter.length != 2) {
                     System.out.println("start erwartet genau eine komponenten-id");
                 } else {
-                    executeCommand(new StartComponent(Runtime.getInstance(), Integer.parseInt(parameter[1])));
+                    System.out.println("start is not yet implemented");
                 }
             } else if (input.equals("list")) {
                 executeCommand(new ListComponentsCommand());

@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="727c06d5-2549-4a97-bf82-85c0a2ae3aa2" name="Changes" comment="zweiter commit">
-      <change afterPath="$PROJECT_DIR$/TestKomponente.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ooka/commands/ListComponentsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/cli/Cli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/cli/Cli.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/cli/CliImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/cli/CliImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/commands/LoadJarCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/commands/LoadJarCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/component/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/component/Component.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/component/ComponentRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/component/ComponentRunnable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/runtime/Runtime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/runtime/Runtime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/RuntimeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/RuntimeTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="727c06d5-2549-4a97-bf82-85c0a2ae3aa2" name="Changes" comment="zweiter commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +19,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="development" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
@@ -60,7 +54,7 @@
     "Maven.Aufgabe2 [compile].executor": "Run",
     "Maven.Aufgabe2 [package].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "development",
+    "git-widget-placeholder": "clemes",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/clemens/Programmierung/Uni/OOKA/Aufgabe2",
     "node.js.detected.package.eslint": "true",
@@ -97,6 +91,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -118,6 +114,7 @@
       <updated>1713955116321</updated>
       <workItem from="1713955117420" duration="6752000" />
       <workItem from="1714123221837" duration="1527000" />
+      <workItem from="1714889174623" duration="596000" />
     </task>
     <task id="LOCAL-00001" summary="erster commit">
       <option name="closed" value="true" />
@@ -127,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714123583088</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="analyze loaded classes with reflection-api">
+      <option name="closed" value="true" />
+      <created>1714889244967</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714889244967</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,7 +143,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="development" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -146,6 +163,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="erster commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="erster commit" />
+    <MESSAGE value="analyze loaded classes with reflection-api" />
+    <option name="LAST_COMMIT_MESSAGE" value="analyze loaded classes with reflection-api" />
   </component>
 </project>
