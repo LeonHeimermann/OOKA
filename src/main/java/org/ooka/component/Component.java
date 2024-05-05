@@ -2,32 +2,22 @@ package org.ooka.component;
 
 import org.ooka.types.State;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
+public class Component implements ComponentInstanceHandler {
 
-public class Component {
-
-    private int id;
-    private String componentName;
+    private final int id;
+    private final String componentName;
     private State state;
-    private List<Thread> instances;
-    final Method startMethod;
-    final Method stopMethod;
-    final Class startingClass;
+    private final ComponentInstanceHandler componentInstanceHandler;
 
-    public Component(int id, String componentName, Class startingClass, Method startMethod, Method stopMethod) {
-        this(id, componentName, State.INITIAL, startingClass, startMethod, stopMethod);
+    public Component(int id, String componentName) {
+        this(id, componentName, State.INITIAL);
     }
 
-    public Component(int id, String componentName, State state, Class startingClass, Method startMethod, Method stopMethod) {
+    public Component(int id, String componentName, State state) {
         this.id = id;
         this.componentName = componentName;
         this.state = state;
-        this.startingClass = startingClass;
-        this.startMethod = startMethod;
-        this.stopMethod = stopMethod;
-        instances = new ArrayList<>();
+        componentInstanceHandler = new ComponentInstanceHandlerImpl(this);
     }
 
     public int getId() {
@@ -46,22 +36,33 @@ public class Component {
         this.state = state;
     }
 
-    public void addInstance(Thread instance) {
-        instances.add(instance);
+    @Override
+    public void startInstance() {
+        componentInstanceHandler.startInstance();
     }
 
-    public List<Thread> getAllInstances() {
-        return instances;
+    @Override
+    public void startInstances(int amount) {
+        componentInstanceHandler.startInstances(amount);
     }
 
-    public int getNextInstanceId() {
-        return instances.size();
+    @Override
+    public void stopInstanceById(int threadId) {
+        componentInstanceHandler.stopInstanceById(threadId);
     }
 
+    @Override
+    public void stopAllInstances() {
+        componentInstanceHandler.stopAllInstances();
+    }
+
+    @Override
     public void checkIsRunning() {
-        if (instances.isEmpty()) {
-            state = State.STOPPED;
-        }
+        componentInstanceHandler.checkIsRunning();
+    }
+
+    public String toString() {
+        return String.format("id: %s, name: %s, state: %s", id, componentName, state);
     }
 
 }
