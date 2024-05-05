@@ -21,7 +21,7 @@ class RuntimeTest {
     void runtimeRoundTripTest() throws InterruptedException {
         int componentId = 0;
         String componentName = "TestComponent";
-        Component component = new Component(componentId, componentName);
+        Component component = new Component(componentId, componentName, null, null, null);
         assertEquals(State.INITIAL, component.getState());
         runtime.addComponent(component);
         assertEquals(State.LOADED, component.getState());

@@ -5,5 +5,5 @@ import org.ooka.commands.Command;
 public interface Cli {
     void start();
 
-    void executeCommand(Command command);
+    boolean executeCommand(Command command);
 }

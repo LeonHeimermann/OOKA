@@ -2,6 +2,7 @@ package org.ooka.component;
 
 import org.ooka.types.State;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,15 +12,21 @@ public class Component {
     private String componentName;
     private State state;
     private List<Thread> instances;
+    final Method startMethod;
+    final Method stopMethod;
+    final Class startingClass;
 
-    public Component(int id, String componentName) {
-        this(id, componentName, State.INITIAL);
+    public Component(int id, String componentName, Class startingClass, Method startMethod, Method stopMethod) {
+        this(id, componentName, State.INITIAL, startingClass, startMethod, stopMethod);
     }
 
-    public Component(int id, String componentName, State state) {
+    public Component(int id, String componentName, State state, Class startingClass, Method startMethod, Method stopMethod) {
         this.id = id;
         this.componentName = componentName;
         this.state = state;
+        this.startingClass = startingClass;
+        this.startMethod = startMethod;
+        this.stopMethod = stopMethod;
         instances = new ArrayList<>();
     }
 

@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="727c06d5-2549-4a97-bf82-85c0a2ae3aa2" name="Changes" comment="erster commit">
+    <list default="true" id="727c06d5-2549-4a97-bf82-85c0a2ae3aa2" name="Changes" comment="zweiter commit">
+      <change afterPath="$PROJECT_DIR$/TestKomponente.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ooka/commands/ListComponentsCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/cli/Cli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/cli/Cli.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/cli/CliImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/cli/CliImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/commands/LoadJarCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/commands/LoadJarCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/component/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/component/Component.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/component/ComponentRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/component/ComponentRunnable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ooka/runtime/Runtime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ooka/runtime/Runtime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/RuntimeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/RuntimeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,18 +33,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "snensmens"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;snensmens&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/LeonHeimermann/OOKA.git",
-    "accountId": "f982f156-410a-457d-a36c-f7cdd41a7519"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/LeonHeimermann/OOKA.git&quot;,
+    &quot;accountId&quot;: &quot;f982f156-410a-457d-a36c-f7cdd41a7519&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -50,10 +57,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "Maven.Aufgabe2 [compile].executor": "Run",
     "Maven.Aufgabe2 [package].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "development",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/clemens/Programmierung/Uni/OOKA/Aufgabe2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -62,6 +71,15 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/target" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/target" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.ooka.Main" />

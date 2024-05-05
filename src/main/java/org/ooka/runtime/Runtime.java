@@ -78,11 +78,14 @@ public class Runtime {
         }
     }
 
+    public List<Component> getLoadedComponents() {
+        return loadedComponents;
+    }
+
     private Component getComponentById(int componentId) {
         return loadedComponents.stream()
                 .filter(entry -> entry.getId() == componentId)
                 .findFirst()
                 .orElseThrow();
     }
-
 }
