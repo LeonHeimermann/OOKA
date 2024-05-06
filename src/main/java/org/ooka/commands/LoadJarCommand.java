@@ -51,7 +51,6 @@ public class LoadJarCommand implements Command {
                     throw new RuntimeException("Keine StarterClass gefunden");
                 } else {
                     String componentName = generateComponentName();
-                    System.out.println(componentName);
                     Component newComponent = new Component(
                             componentName,
                             startingClass.getStartMethod(),

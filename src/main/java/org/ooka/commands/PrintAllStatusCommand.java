@@ -18,7 +18,7 @@ public class PrintAllStatusCommand implements Command {
         if (statusList .isEmpty()) {
             return false;
         }
-        statusList.forEach(System.out::println);
+        statusList.forEach(entry -> System.out.printf("\t%s\n", entry));
         return true;
     }
 

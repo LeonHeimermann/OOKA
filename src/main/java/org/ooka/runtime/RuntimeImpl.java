@@ -147,7 +147,7 @@ public class RuntimeImpl implements Runtime {
     }
 
     private void handleNoSuchElementException(int componentId) {
-        System.out.printf("No component found with id: %s", componentId);
+        System.out.printf("No component found with id: %s\n", componentId);
     }
 
     private void handleRuntimeException(RuntimeException e) {

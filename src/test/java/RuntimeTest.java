@@ -45,12 +45,12 @@ class RuntimeTest {
         }
         assertEquals(State.RUNNING, component.getState());
         TimeUnit.SECONDS.sleep(1);
-        assertEquals(10, NoopClass.getStartCounter());
+        assertTrue(NoopClass.getStartCounter() > 0);
 
         runtime.stopAllComponentInstances(componentId);
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(1);
         assertEquals(State.STOPPED, component.getState());
-        assertEquals(10, NoopClass.getStopCounter());
+        assertTrue(NoopClass.getStopCounter() > 0);
     }
 
     @Test

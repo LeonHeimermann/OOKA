@@ -17,7 +17,7 @@ public class PrintStatusCommand implements Command {
         if (status == null) {
             return false;
         }
-        System.out.println(status);
+        System.out.printf("\t%s\n", status);
         return true;
     }
 }

@@ -17,8 +17,7 @@ public class CliImpl implements Cli {
 
             if (input.equals("help")) {
                 printHelp();
-            }
-            else if (input.equals("exit")){
+            } else if (input.equals("exit")) {
                 System.out.println("LZU wird heruntergefahren...");
                 System.exit(0);
             } else if (input.startsWith("deploy")) {
@@ -26,7 +25,7 @@ public class CliImpl implements Cli {
                 if (parameter.length != 2) {
                     System.out.println("deploy erwartet genau eine pfadangabe");
                 } else {
-                    if ( executeCommand(new LoadJarCommand(runtime, parameter[1])) ){
+                    if (executeCommand(new LoadJarCommand(runtime, parameter[1]))) {
                         System.out.println("successfully deployed component");
                     }
                 }
@@ -56,6 +55,20 @@ public class CliImpl implements Cli {
                     Command printStatusCommand = new PrintStatusCommand(runtime, componentId);
                     printStatusCommand.execute();
                 }
+            } else if (input.startsWith("remove")) {
+                var parameter = input.split("\\s+");
+                if (parameter.length != 2) {
+                    System.out.println("remove erwartet genau eine komponenten-id");
+                } else {
+                    try {
+                        int componentId = Integer.parseInt(parameter[1]);
+                        Command removeComponentCommand = new RemoveComponentCommand(runtime, componentId);
+                        removeComponentCommand.execute();
+                        System.out.println("Successfully removed component");
+                    } catch (NumberFormatException e) {
+                        System.out.println("Id could not be parsed");
+                    }
+                }
             } else {
                 System.out.println("'" + input + "' ist kein gültiges kommando. für eine Kommandoübersicht 'help' eingeben.");
             }
@@ -71,6 +84,9 @@ public class CliImpl implements Cli {
         System.out.println("deploy [pfad]:\tKomponente deployen");
         System.out.println("start [id]:\t\tKomponente starten");
         System.out.println("list: \t\t\tKomponenten auflisten");
+        System.out.println("status: \t\t\tStatus der Komponenten auflisten");
+        System.out.println("status [id]: \t\t\tStatus einer Komponente auflisten");
+        System.out.println("remove [id]: \t\t\tKomponente entfernen");
         System.out.println("help:\t\t\tHilfe anzeigen");
         System.out.println("exit:\t\t\tLZU beenden");
     }
