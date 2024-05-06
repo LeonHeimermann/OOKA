@@ -95,9 +95,9 @@ class RuntimeTest {
             newComponent.setId(i);
             runtime.startComponentInstance(i);
         }
-        /*List<String> statusList = runtime.getAllStatus();
+        List<String> statusList = runtime.getAllStatus();
         assertEquals(10, statusList.size());
-        assertEquals(statusList, expectedStatus);*/
+        assertEquals(statusList, expectedStatus);
     }
 
     @AfterEach
