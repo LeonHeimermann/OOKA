@@ -115,7 +115,6 @@ public class LoadJarCommand implements Command {
             for (var method : c.getMethods()) {
                 for (var annotation : method.getDeclaredAnnotations()) {
                     if (annotation instanceof Start) {
-                        System.out.println("geil");
                         if (startMethod == null) {
                             startMethod = method;
                         } else {
