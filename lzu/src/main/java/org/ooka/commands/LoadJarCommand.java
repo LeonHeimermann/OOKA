@@ -1,8 +1,15 @@
 package org.ooka.commands;
 
+import annotations.Inject;
+import annotations.Start;
+import annotations.Stop;
 import org.ooka.component.Component;
+import org.ooka.logger.Logger;
+import org.ooka.logger.LoggerImpl;
 import org.ooka.runtime.Runtime;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -104,17 +111,18 @@ public class LoadJarCommand implements Command {
             return isStartingClass;
         }
 
-        private void analyzeClass(Class c) {
+        private void analyzeClass(Class<?> c) {
             for (var method : c.getMethods()) {
                 for (var annotation : method.getDeclaredAnnotations()) {
-                    if (annotation.annotationType().getSimpleName().equals("Start")) {
+                    if (annotation instanceof Start) {
+                        System.out.println("geil");
                         if (startMethod == null) {
                             startMethod = method;
                         } else {
                             throw new RuntimeException("Mehr als eine Startmethode gefunden!");
                         }
                     }
-                    if (annotation.annotationType().getSimpleName().equals("Stop")) {
+                    if (annotation instanceof Stop) {
                         if (stopMethod == null) {
                             stopMethod = method;
                         } else {
@@ -123,7 +131,21 @@ public class LoadJarCommand implements Command {
                     }
                 }
             }
-
+            Field[] fields = c.getDeclaredFields();
+            for (Field field: fields) {
+                Annotation[] declaredAnnotations = field.getDeclaredAnnotations();
+                for (Annotation annotation: declaredAnnotations) {
+                    if (annotation instanceof Inject) {
+                        Logger logger = LoggerImpl.getInstance();
+                        try {
+                            field.setAccessible(true);
+                            field.set(c, logger);
+                        } catch (IllegalAccessException e) {
+                            System.out.println("Could not inject instance of type Logger");
+                        }
+                    }
+                }
+            }
             isStartingClass = (startMethod != null && stopMethod != null);
         }
     }
