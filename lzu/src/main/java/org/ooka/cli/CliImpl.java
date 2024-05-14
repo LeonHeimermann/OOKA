@@ -36,6 +36,7 @@ public class CliImpl implements Cli {
                 break;
             case "stop":
                 handleStop(inputTokens, runtime);
+                break;
             case "list":
                 executeCommand(new ListComponentsCommand());
                 break;
@@ -91,8 +92,9 @@ public class CliImpl implements Cli {
             try {
                 int componentId = Integer.parseInt(parameter[1]);
                 Command startInstanceCommand = new StartInstanceCommand(runtime, componentId);
-                startInstanceCommand.execute();
-                System.out.println("Successfully started component");
+                if (startInstanceCommand.execute()) {
+                    System.out.println("Successfully started component");
+                }
             } catch (NumberFormatException e) {
                 System.out.println("Id could not be parsed");
             }
@@ -106,8 +108,9 @@ public class CliImpl implements Cli {
             try {
                 int componentId = Integer.parseInt(parameter[1]);
                 Command stopAllInstancesCommand = new StopAllInstancesCommand(runtime, componentId);
-                stopAllInstancesCommand.execute();
-                System.out.println("Successfully stopped component");
+                if (stopAllInstancesCommand.execute()) {
+                    System.out.println("Successfully stopped component");
+                }
             } catch (NumberFormatException e) {
                 System.out.println("Id could not be parsed");
             }
