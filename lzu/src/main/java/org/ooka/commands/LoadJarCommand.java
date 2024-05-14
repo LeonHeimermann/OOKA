@@ -60,6 +60,7 @@ public class LoadJarCommand implements Command {
                     String componentName = generateComponentName();
                     Component newComponent = new Component(
                             componentName,
+                            classLoader,
                             startingClass.getStartMethod(),
                             startingClass.getStopMethod(),
                             startingClass.getStartingClass());

@@ -28,6 +28,7 @@ class RuntimeTest {
         String componentName = "TestComponent";
         Component component = new Component(
                 componentName,
+                null,
                 NoopClass.class.getDeclaredMethod("noopStart"),
                 NoopClass.class.getDeclaredMethod("noopStop"),
                 NoopClass.class
@@ -59,6 +60,7 @@ class RuntimeTest {
         String componentName = "TestComponent";
         Component component = new Component(
                 componentName,
+                null,
                 NoopClass.class.getDeclaredMethod("noopStart"),
                 NoopClass.class.getDeclaredMethod("noopStop"),
                 NoopClass.class
@@ -87,6 +89,7 @@ class RuntimeTest {
             expectedStatus.add(generateStatus(i, componentName, State.RUNNING));
             Component newComponent = new Component(
                     componentName,
+                    null,
                     NoopClass.class.getDeclaredMethod("noopStart"),
                     NoopClass.class.getDeclaredMethod("noopStop"),
                     NoopClass.class

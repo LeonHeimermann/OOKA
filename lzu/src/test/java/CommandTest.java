@@ -9,9 +9,11 @@ import org.ooka.types.State;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class CommandTest {
 
@@ -24,11 +26,27 @@ public class CommandTest {
     }
 
     @Test
+    void testMultipleInstances() {
+        Command deploy1 = new LoadJarCommand(runtime, "src/test/resources/HelloWorld.jar");
+        deploy1.execute();
+        Command deploy2 = new LoadJarCommand(runtime, "src/test/resources/HelloWorld.jar");
+        deploy2.execute();
+        List<Component> componentList = runtime.getDeployedComponents();
+        assertNotEquals(componentList.get(0).getId(), componentList.get(1).getId());
+        assertEquals(componentList.get(0).getComponentName(), componentList.get(1).getComponentName());
+        assertNotEquals(componentList.get(0).getClassLoader(), componentList.get(1).getClassLoader());
+        assertNotEquals(componentList.get(0).getStartMethod(), componentList.get(1).getStartMethod());
+        assertNotEquals(componentList.get(0).getStopMethod(), componentList.get(1).getStopMethod());
+        assertNotEquals(componentList.get(0).getStartingClass(), componentList.get(1).getStartingClass());
+    }
+
+    @Test
     void testDeployStartStopCommand() throws NoSuchMethodException, InterruptedException {
         int componentId = 0;
         String componentName = "testComponent";
         Component testComponent = new Component(
                 componentName,
+                null,
                 NoopClass.class.getDeclaredMethod("noopStart"),
                 NoopClass.class.getDeclaredMethod("noopStop"),
                 NoopClass.class
@@ -70,6 +88,7 @@ public class CommandTest {
         String componentName = "testComponent";
         Component testComponent = new Component(
                 componentName,
+                null,
                 NoopClass.class.getDeclaredMethod("noopStart"),
                 NoopClass.class.getDeclaredMethod("noopStop"),
                 NoopClass.class
@@ -91,6 +110,7 @@ public class CommandTest {
         String componentName = "testComponent";
         Component testComponent = new Component(
                 componentName,
+                null,
                 NoopClass.class.getDeclaredMethod("noopStart"),
                 NoopClass.class.getDeclaredMethod("noopStop"),
                 NoopClass.class

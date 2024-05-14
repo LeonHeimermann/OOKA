@@ -3,23 +3,26 @@ package org.ooka.component;
 import org.ooka.types.State;
 
 import java.lang.reflect.Method;
+import java.net.URLClassLoader;
 
 public class Component implements ComponentInstanceHandler {
 
     private int id;
     private final String componentName;
+    private final URLClassLoader classLoader;
     private State state;
     private final Method startMethod;
     private final Method stopMethod;
     private final Class<?> startingClass;
     private final ComponentInstanceHandler componentInstanceHandler;
 
-    public Component(String componentName, Method startMethod, Method stopMethod, Class<?> startingClass) {
-        this(componentName, State.INITIAL, startMethod, stopMethod, startingClass);
+    public Component(String componentName, URLClassLoader classLoader, Method startMethod, Method stopMethod, Class<?> startingClass) {
+        this(componentName, classLoader, State.INITIAL, startMethod, stopMethod, startingClass);
     }
 
-    public Component(String componentName, State state, Method startMethod, Method stopMethod, Class<?> startingClass) {
+    public Component(String componentName, URLClassLoader classLoader, State state, Method startMethod, Method stopMethod, Class<?> startingClass) {
         this.componentName = componentName;
+        this.classLoader = classLoader;
         this.state = state;
         componentInstanceHandler = new ComponentInstanceHandlerImpl(this);
         this.startMethod = startMethod;
@@ -37,6 +40,10 @@ public class Component implements ComponentInstanceHandler {
 
     public String getComponentName() {
         return componentName;
+    }
+
+    public URLClassLoader getClassLoader() {
+        return classLoader;
     }
 
     public State getState() {
