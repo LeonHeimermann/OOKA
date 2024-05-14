@@ -34,6 +34,8 @@ public class CliImpl implements Cli {
             case "start":
                 handleStart(inputTokens, runtime);
                 break;
+            case "stop":
+                handleStop(inputTokens, runtime);
             case "list":
                 executeCommand(new ListComponentsCommand());
                 break;
@@ -57,6 +59,7 @@ public class CliImpl implements Cli {
     private void printHelp() {
         System.out.println("deploy [pfad]:\tKomponente deployen");
         System.out.println("start [id]:\t\tKomponente starten");
+        System.out.println("stop [id]:\t\tKomponente stoppen");
         System.out.println("list: \t\t\tKomponenten auflisten");
         System.out.println("status: \t\t\tStatus der Komponenten auflisten");
         System.out.println("status [id]: \t\t\tStatus einer Komponente auflisten");
@@ -90,6 +93,21 @@ public class CliImpl implements Cli {
                 Command startInstanceCommand = new StartInstanceCommand(runtime, componentId);
                 startInstanceCommand.execute();
                 System.out.println("Successfully started component");
+            } catch (NumberFormatException e) {
+                System.out.println("Id could not be parsed");
+            }
+        }
+    }
+
+    private void handleStop(String[] parameter, Runtime runtime) {
+        if (parameter.length != 2) {
+            System.out.println("stop erwartet genau eine komponenten-id");
+        } else {
+            try {
+                int componentId = Integer.parseInt(parameter[1]);
+                Command stopAllInstancesCommand = new StopAllInstancesCommand(runtime, componentId);
+                stopAllInstancesCommand.execute();
+                System.out.println("Successfully stopped component");
             } catch (NumberFormatException e) {
                 System.out.println("Id could not be parsed");
             }
